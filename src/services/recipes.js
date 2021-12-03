@@ -11,7 +11,7 @@ const getRecipes = () => {
         }
     };
     return axios.request(options).then(function (response) {
-        console.log("data",response.data);
+        //console.log("data",response.data);
         return transform(response.data)
     }).catch(function (error) {
         console.error(error);
@@ -23,4 +23,4 @@ const transform = (data) => {
     return results
 }
 
-module.export = { getRecipes }
+module.exports = { getRecipes }

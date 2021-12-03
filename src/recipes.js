@@ -8,7 +8,6 @@ const { getRecipes } = require('./services/recipes');
 
 const InstructionsInfoType = new GraphQLObjectType({
     name: 'InstructionsInfo',
-    description: 'Instructions Info from API service',
     fields: () => ({
         id: {
             type: GraphQLInt
@@ -70,16 +69,7 @@ const RecipeInfoType = new GraphQLObjectType({
     })
 });
 
-const RecipeType = new GraphQLObjectType({
-    name: 'Recipe',
-    fields: () => ({
-        recipelist: {
-            type: new GraphQLList(RecipeInfoType)
-        }
-    })
-});
-
-module.export = {
-    type: RecipeType,
+module.exports = {
+    type: new GraphQLList(RecipeInfoType),
     resolve: getRecipes
 }

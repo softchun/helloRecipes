@@ -3,11 +3,11 @@ const recipeQuery = require('./recipes');
 
 const query = new GraphQLObjectType({
     name: 'RootQueryType',
-    fields: {
+    fields: () => ({
         recipelist: recipeQuery
-    },
+    }),
 });
 
-module.export = new GraphQLSchema({
+module.exports = new GraphQLSchema({
     query,
 });

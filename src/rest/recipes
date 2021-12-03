@@ -20,7 +20,7 @@ const transform = (result) => {
 
 router.get('/', (req, res) => {
     
-    query("query{recipelist{name, instructions, thumbnail_url, tags, yields, created_at, updated_at}}")
+    query("query{recipelist{name, instructions{id, position, display_text}, thumbnail_url, tags{id, type, name, display_name}, yields, created_at, updated_at}}")
         .then(result => {
             console.log("result->",result)
             const transformed = transform(result)
