@@ -1,0 +1,34 @@
+const app = require('express');
+const router = app.Router();
+const rootSchema = require('../app');
+const { graphql } = require('graphql');
+
+const query = (q, vars) => {
+    const res = rootSchema;
+    return graphql(res, q, null, null, vars)
+}
+
+const transform = (result) => {
+    const recipe = result.data.recipelist;
+    return {
+        data: {
+            type: 'recipelist',
+            recipelist: recipe
+        }
+    }
+}
+
+router.get('/', (req, res) => {
+    
+    query("query{recipelist{name, instructions, thumbnail_url, tags, yields, created_at, updated_at}}")
+        .then(result => {
+            console.log("result->",result)
+            const transformed = transform(result)
+            res.send(transformed)
+        })
+        .catch(err => {
+            res.sendStatus(500)
+        })
+})
+
+module.exports = router;
