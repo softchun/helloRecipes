@@ -8,17 +8,18 @@ const recipes = require('./src/rest/recipes');
 
 app.use('/recipes', recipes);
 
-app.get("/", (req, res) => {
-    res.send("Hello Recipes")
-});
-
 app.use(
-    'graphql',
+    '/graphql',
     graphqlHTTP.graphqlHTTP({
         schema,
         graphql: true,
     })
 )
+
+app.get("/", (req, res) => {
+    res.send("Hello Recipes")
+});
+
 
 app.listen(PORT, () => {
     console.log("Server running at PORT ", PORT);
