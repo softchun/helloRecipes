@@ -7,7 +7,7 @@ const getRecipeInfo = (_, param, req) => {
         params: { id: req.id },
         headers: {
             'x-rapidapi-host': 'tasty.p.rapidapi.com',
-            'x-rapidapi-key': '6d98e92327mshed74968c8d9546dp1837d1jsnef020c081e23'
+            'x-rapidapi-key': 'db580f75cemsh87866b09b41686dp1b7ab8jsn81788be65aaf'
         }
     };
     return axios.request(options).then(function (response) {
