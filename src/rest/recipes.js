@@ -44,6 +44,8 @@ const transformTags = (result) => {
 router.get('/info/:id', (req, res) => {
     const { id } = req.params
     const vars = { id }
+    
+    console.log("id",req.params)
     const q = ` query{
                     recipeInfo{
                         id,
@@ -94,9 +96,9 @@ router.get('/tags', (req, res) => {
         })
 })
 
-router.get('/search', jsonParser, (req, res) => {
-    const { q, tags } = req.query
-    const { from, size } = req.body
+router.post('/search', jsonParser, (req, res) => {
+    const { from, size, q, tags } = req.body.body
+    console.log("body",req.body)
     const vars = {
         from,
         size,
@@ -128,7 +130,7 @@ router.get('/search', jsonParser, (req, res) => {
         })
 })
 
-router.get('/', jsonParser, (req, res) => {
+router.post('/', jsonParser, (req, res) => {
     const { from, size } = req.body
     const vars = {
         from,

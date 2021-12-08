@@ -4,6 +4,10 @@ const PORT = 5000;
 const graphqlHTTP = require('express-graphql')
 const schema = require('./src/app')
 
+const cors = require('cors');
+
+app.use(cors())
+
 const recipes = require('./src/rest/recipes');
 
 app.use('/recipes', recipes);
